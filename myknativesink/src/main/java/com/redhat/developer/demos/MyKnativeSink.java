@@ -38,7 +38,6 @@ public class MyKnativeSink {
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(MediaType.TEXT_PLAIN)
   public Response event(String event) {
-    System.out.print("EVENT: " + event);
     long start = System.currentTimeMillis();
     try { // adding some "processing time"
     	int interval = 10000;
@@ -52,7 +51,7 @@ public class MyKnativeSink {
     } catch (Exception e) {
       System.out.println(e.toString());
     }
-    System.out.println(" processed in " + (System.currentTimeMillis() - start) + "ms.");
+    System.out.println("EVENT: " + event + " processed in " + (System.currentTimeMillis() - start) + "ms.");
     return Response.ok().build();
   }
 
