@@ -1,5 +1,7 @@
 package com.redhat.developer.demos;
 
+import java.util.Random;
+
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -8,15 +10,22 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import org.eclipse.microprofile.config.inject.ConfigProperty;
+
 @Path("/")
 public class MyKnativeSink {
 
+  @ConfigProperty(name = "event.processing.time", defaultValue="10000") 
+  String eventProcessingTime;
+	
   private String prefix = "Aloha";
     
   private String HOSTNAME =
      System.getenv().getOrDefault("HOSTNAME", "unknown");
 
   private int count = 0;
+  
+  private Random random = new Random();
 
   @GET    
   @Produces(MediaType.TEXT_PLAIN)
@@ -29,12 +38,21 @@ public class MyKnativeSink {
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(MediaType.TEXT_PLAIN)
   public Response event(String event) {
-    System.out.println("EVENT: " + event);
+    System.out.print("EVENT: " + event);
+    long start = System.currentTimeMillis();
     try { // adding some "processing time"
-      Thread.sleep(10000);
+    	int interval = 10000;
+    	if (eventProcessingTime.startsWith("random:")) {
+    		int bound = Integer.valueOf(eventProcessingTime.substring(7)).intValue();
+    		interval = random.nextInt(bound);
+    	} else {
+    		interval = Integer.valueOf(eventProcessingTime).intValue();
+    	}
+    	Thread.sleep(interval);
     } catch (Exception e) {
       System.out.println(e.toString());
     }
+    System.out.println(" processed in " + (System.currentTimeMillis() - start) + "ms.");
     return Response.ok().build();
   }
 
