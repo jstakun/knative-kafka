@@ -1,8 +1,8 @@
-VERSION=1.0.1
+VERSION=0.1
 
-docker login docker.io
+podman login quay.io
 
-docker build -f src/main/docker/Dockerfile.native -t dev.local/burrsutter/myknativesink:$VERSION .
+podman build -f src/main/docker/Dockerfile.native -t dev.local/jstakun/myknativesink:$VERSION .
 
-docker tag dev.local/burrsutter/myknativesink:$VERSION docker.io/burrsutter/myknativesink:$VERSION
-docker push docker.io/burrsutter/myknativesink:$VERSION
+podman tag dev.local/jstakun/myknativesink:$VERSION quay.io/jstakun/myknativesink:$VERSION
+podman push quay.io/jstakun/myknativesink:$VERSION
