@@ -35,8 +35,8 @@ $ helm install --generate-name ./helm3/serverless-streams/
 $ oc get Kafka
 $ oc get KafkaTopic
 $ oc get KafkaBridge
-$ oc get KafkaSource
 $ oc get KnativeEventingKafka
+$ oc get KafkaSource
 $ oc get Service.serving.knative.dev
 ```
 7. Generate stream of events published to Kafka topic and consumed by Serverless service

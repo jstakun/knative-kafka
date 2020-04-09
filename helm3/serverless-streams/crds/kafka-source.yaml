@@ -1,4 +1,4 @@
-apiVersion: sources.eventing.knative.dev/v1alpha1
+apiVersion: sources.knative.dev/v1alpha1
 kind: KafkaSource
 metadata:
   name: mykafka-source
@@ -10,3 +10,4 @@ spec:
     apiVersion: serving.knative.dev/v1alpha1
     kind: Service
     name: myknativesink
+
