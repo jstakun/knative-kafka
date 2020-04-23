@@ -19,6 +19,13 @@ spec:
     storage:
       type: ephemeral
     version: 2.4.0
+    resources:
+      requests:
+        cpu: '1'
+        memory: 512Mi
+      limits:
+        cpu: '2'
+        memory: 1Gi 
   zookeeper:
     replicas: 3
     storage:
