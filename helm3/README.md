@@ -46,10 +46,12 @@ $ ROUTE=$(oc get ingress | grep my-bridge | awk '{print $2}')
 
 $ echo $ROUTE 
 
-$ while true;
-curl -X POST $ROUTE/topics/my-topic -H 'content-type: application/vnd.kafka.json.v2+json' -d '{"records": [{"value": "hello from shadowman"}]}'
-echo;   
-do sleep 0.5;
+$ i=0
+
+$ while true; 
+curl -X POST $ROUTE/topics/my-topic -H 'content-type: application/vnd.kafka.json.v2+json' -d '{"records": [{"value": "'"$i"' hello from shadowman"}]}'; 
+echo $i;    
+do sleep 0.1;  
+((i=i+1)); 
 done;
 ```
-
