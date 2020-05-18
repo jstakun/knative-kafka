@@ -4,6 +4,6 @@
 
 podman login quay.io
 
-podman tag $1 quay.io/jstakun/myknativesink:0.1
+podman tag $1 quay.io/jstakun/myknativesink:0.2
 
-podman push quay.io/jstakun/myknativesink:0.1
+podman push quay.io/jstakun/myknativesink:0.2
