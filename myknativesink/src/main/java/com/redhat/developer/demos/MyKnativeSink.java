@@ -35,7 +35,6 @@ public class MyKnativeSink {
   }
 
   @POST
-  @Consumes(MediaType.APPLICATION_JSON)
   @Produces(MediaType.TEXT_PLAIN)
   public Response event(String event) {
     long start = System.currentTimeMillis();
@@ -51,7 +50,8 @@ public class MyKnativeSink {
     } catch (Exception e) {
       System.out.println(e.toString());
     }
-    System.out.println("EVENT: " + event + " processed in " + (System.currentTimeMillis() - start) + "ms.");
+    final String response = "EVENT: " + event + " processed in " + (System.currentTimeMillis() - start) + "ms.";
+    System.out.println(response);
     return Response.ok().build();
   }
 
