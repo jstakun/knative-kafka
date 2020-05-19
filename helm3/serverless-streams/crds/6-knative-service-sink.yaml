@@ -9,7 +9,7 @@ spec:
         autoscaling.knative.dev/target: "1"
     spec:
       containers:
-      - image: quay.io/jstakun/myknativesink:0.1
+      - image: quay.io/jstakun/myknativesink:0.2
         env:
           - name: EVENT_PROCESSING_TIME
             value: "random:10000" 
