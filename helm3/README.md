@@ -12,7 +12,6 @@ $ oc new-project streams-serverless-demo
 $ oc get csv
 NAME                                DISPLAY                             VERSION   REPLACES                          
 amqstreams.v1.4.0                   Red Hat Integration - AMQ Streams   1.4.0     amqstreams.v1.3.0                   
-knative-eventing-operator.v0.12.0   Knative Eventing Operator           0.12.0    knative-eventing-operator.v0.11.0   
 knative-kafka-operator.v0.12.1      Knative Apache Kafka Operator       0.12.1    knative-kafka-operator.v0.11.2      
 serverless-operator.v1.5.0          OpenShift Serverless Operator       1.5.0     serverless-operator.v1.4.1          
 ```
@@ -42,16 +41,14 @@ $ oc get Service.serving.knative.dev
 7. Generate stream of events published to Kafka topic and consumed by Serverless service
 
 ```
-$ ROUTE=$(oc get ingress | grep my-bridge | awk '{print $2}')
+$ ROUTE=$(oc get ingress -n streams-serverless-demo | grep my-bridge | awk '{print $2}')
 
 $ echo $ROUTE 
 
-$ i=0
-
-$ while true; 
+$ while :; 
 curl -X POST $ROUTE/topics/my-topic -H 'content-type: application/vnd.kafka.json.v2+json' -d '{"records": [{"value": "'"$i"' hello from shadowman"}]}'; 
 echo $i;    
-do sleep 0.1;  
+do sleep 0.5;  
 ((i=i+1)); 
 done;
 ```

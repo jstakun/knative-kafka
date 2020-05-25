@@ -42,7 +42,7 @@ ingress:
     # kubernetes.io/ingress.class: nginx
     # kubernetes.io/tls-acme: "true"
   hosts:
-    - host: kafka-bridge.apps.cluster-cee-12ea.cee-12ea.example.opentlc.com
+    - host: kafka-bridge.apps.crc.testing
       paths:
       - /  
   tls: []
