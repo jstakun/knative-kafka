@@ -10,10 +10,10 @@ $ oc new-project streams-serverless-demo
 
 ```
 $ oc get csv
-NAME                                DISPLAY                             VERSION   REPLACES                          
-amqstreams.v1.4.0                   Red Hat Integration - AMQ Streams   1.4.0     amqstreams.v1.3.0                   
-knative-kafka-operator.v0.12.1      Knative Apache Kafka Operator       0.12.1    knative-kafka-operator.v0.11.2      
-serverless-operator.v1.5.0          OpenShift Serverless Operator       1.5.0     serverless-operator.v1.4.1          
+NAME                                DISPLAY                             VERSION   REPLACES 
+amqstreams.v1.4.0                   Red Hat Integration - AMQ Streams   1.4.0     amqstreams.v1.3.0 
+knative-kafka-operator.v0.12.1      Knative Apache Kafka Operator       0.12.1    knative-kafka-operator.v0.11.2 
+serverless-operator.v1.5.0          OpenShift Serverless Operator       1.5.0     serverless-operator.v1.4.1
 ```
 3. Clone this repo 
 
@@ -47,8 +47,15 @@ $ echo $ROUTE
 
 $ while :; 
 curl -X POST $ROUTE/topics/my-topic -H 'content-type: application/vnd.kafka.json.v2+json' -d '{"records": [{"value": "'"$i"' hello from shadowman"}]}'; 
-echo $i;    
-do sleep 0.5;  
+echo $i;
+do sleep 0.5;
 ((i=i+1)); 
 done;
 ```
+
+while :; 
+curl -X POST kafka-bridge.apps.cluster-cee-12ea.cee-12ea.example.opentlc.com/topics/my-topic -H 'content-type: application/vnd.kafka.json.v2+json' -d '{"records": [{"value": "'"$i"' hello from shadowman"}]}'; 
+echo $i;
+do sleep 0.5;
+((i=i+1)); 
+done;

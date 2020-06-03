@@ -4,11 +4,13 @@ metadata:
   name: mykafka-source
 spec:
   consumerGroup: knative-group
-  bootstrapServers: my-cluster-kafka-bootstrap:9092
-  topics: my-topic
+  bootstrapServers: 
+   - my-cluster-kafka-bootstrap:9092
+  topics: 
+   - my-topic
   sink:
     ref:
-      apiVersion: serving.knative.dev/v1alpha1
+      apiVersion: serving.knative.dev/v1
       kind: Service
       name: myknativesink
 
