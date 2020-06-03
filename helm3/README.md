@@ -10,10 +10,10 @@ $ oc new-project streams-serverless-demo
 
 ```
 $ oc get csv
-NAME                                DISPLAY                             VERSION   REPLACES 
-amqstreams.v1.4.0                   Red Hat Integration - AMQ Streams   1.4.0     amqstreams.v1.3.0 
-knative-kafka-operator.v0.12.1      Knative Apache Kafka Operator       0.12.1    knative-kafka-operator.v0.11.2 
-serverless-operator.v1.5.0          OpenShift Serverless Operator       1.5.0     serverless-operator.v1.4.1
+NAME                             DISPLAY                             VERSION   REPLACES   PHASE
+amqstreams.v1.4.1                Red Hat Integration - AMQ Streams   1.4.1                Succeeded
+knative-kafka-operator.v0.15.0   Knative Apache Kafka Operator       0.15.0               Succeeded
+serverless-operator.v1.7.1       OpenShift Serverless Operator       1.7.1                Succeeded
 ```
 3. Clone this repo 
 
