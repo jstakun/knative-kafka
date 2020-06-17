@@ -41,9 +41,7 @@ $ oc get Service.serving.knative.dev
 7. Generate stream of events published to Kafka topic and consumed by Serverless service
 
 ```
-$ ROUTE=$(oc get ingress -n streams-serverless-demo | grep my-bridge | awk '{print $2}')
-
-$ echo $ROUTE 
+$ ROUTE=$(oc get ingress -n streams-serverless-demo | grep my-bridge | awk '{print $2}') && echo $ROUTE 
 
 $ while :; 
 curl -X POST $ROUTE/topics/my-topic -H 'content-type: application/vnd.kafka.json.v2+json' -d '{"records": [{"value": "'"$i"' hello from shadowman"}]}'; 
@@ -52,10 +50,3 @@ do sleep 0.5;
 ((i=i+1)); 
 done;
 ```
-
-while :; 
-curl -X POST kafka-bridge.apps.cluster-cee-12ea.cee-12ea.example.opentlc.com/topics/my-topic -H 'content-type: application/vnd.kafka.json.v2+json' -d '{"records": [{"value": "'"$i"' hello from shadowman"}]}'; 
-echo $i;
-do sleep 0.5;
-((i=i+1)); 
-done;
