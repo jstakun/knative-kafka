@@ -18,10 +18,9 @@ public class MyKnativeSink {
   @ConfigProperty(name = "event.processing.time", defaultValue="10000") 
   String eventProcessingTime;
 	
-  private String prefix = "Aloha";
+  private final String prefix = "Aloha";
     
-  private String HOSTNAME =
-     System.getenv().getOrDefault("HOSTNAME", "unknown");
+  private final String HOSTNAME = System.getenv().getOrDefault("HOSTNAME", "unknown");
 
   private int count = 0;
   
